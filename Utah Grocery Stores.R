@@ -34,11 +34,12 @@ f_breve <- bivariate.density(pp=df_1_ppp, h0=OS(df_1_ppp)/4, adapt=FALSE, resolu
 #risk
 f <- risk(f_breve, g_tilde, tolerate = TRUE)
 
-#plot
+#plot risk  surface
 jpeg(file="Grocery Stores.jpeg")
 plot(f)
 dev.off()
 
+#test tol.classify
 test <- tol.classify(f, cutoff = 0.05)
 
 plot(test$fin)
