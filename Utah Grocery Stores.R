@@ -62,21 +62,15 @@ plot(rho)
 points(rho.class$fin,col=2)
 points(rho.class$fout)
 
+library(spatstat)
+library(spatstat.utils)
+
 #cluster report table
 ID <- 1:length(rho.class[["finsplit"]])       #cluster identifier
 Cases <- lengths(rho.class[["finsplit"]])     #case count
 Controls <- lengths(rho.class[["ginsplit"]])  #control count
 N <- Cases + Controls                         #point count
 Risk <- Cases/N                               #
-Area <- sapply(rho.class$pcpolys, area)       #cluster area
-Case_density <- Cases/Area                    #
-
-#style it
-df_res <- data.frame(ID, N, Cases, Controls, Risk, Case_density, Area) %>%
-  gt() %>%
-  gt_theme_nytimes() %>%
-  tab_header(title = "Clusters of Supermarkets in Utah")
-df_res
 
 #contours to sf
 pcpolys <- rho.class$pcpolys %>%
@@ -85,6 +79,16 @@ pcpolys <- rho.class$pcpolys %>%
   st_set_crs(26912)
 pcpolys$ID <- 1:length(rho.class[["finsplit"]])
 #st_write(pcpolys,"pcpolys.shp")
+
+Area <- st_area(pcpolys) #Take care of units
+Case_density <- Cases/Area                    #
+
+#style it
+df_res <- data.frame(ID, N, Cases, Controls, Risk, Case_density, Area) %>%
+  gt() %>%
+  gt_theme_nytimes() %>%
+  tab_header(title = "Clusters of Supermarkets in Utah")
+df_res
 
 #risk surface raster
 r <- raster(rho$rr)
@@ -101,10 +105,8 @@ map <- tm_shape(r) +
   tm_layout(
     # legend.position = c("right", "top"),
     legend.position = c(-0.2, 0.1),
-    inner.margins = c(.1,.1,.1,.1),
-    frame = FALSE,
-  )
+            inner.margins = c(.1,.1,.1,.1),
+            frame = FALSE,
+            )
 map
-
-
 
