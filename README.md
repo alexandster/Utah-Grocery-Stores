@@ -6,4 +6,4 @@
 
 ![alt text](risk.jpeg)
 
-![alt text](table.png)
+![alt text](table1.png)
