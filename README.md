@@ -6,4 +6,4 @@
 
 ![alt text](risk.jpeg)
 
-![ezcv logo](https://raw.githubusercontent.com/Descent098/ezcv/master/.github/logo.png)
+![alt text(]table.png)
