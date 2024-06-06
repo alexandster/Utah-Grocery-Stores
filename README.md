@@ -4,4 +4,6 @@
  Data source: https://hub.arcgis.com/datasets/wfrc::utah-grocery-and-food-stores-udaf/about
 
 
-![alt text]([https://github.com/alexandster/Utah-Grocery-Stores/blob/main/risk.jpeg])
+![alt text](risk.jpeg)
+
+![ezcv logo](https://raw.githubusercontent.com/Descent098/ezcv/master/.github/logo.png)
